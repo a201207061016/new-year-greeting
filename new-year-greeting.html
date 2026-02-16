@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新年快乐 - 致敬爱的老师</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 50%, #ff6b6b 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .lantern-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin: 30px 0;
+            animation: swing 3s ease-in-out infinite;
+        }
+
+        .lantern {
+            width: 80px;
+            height: 120px;
+            position: relative;
+            animation: swing 2s ease-in-out infinite alternate;
+        }
+
+        .lantern-body {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(to bottom, #ff4444, #cc0000);
+            border-radius: 50% 50% 50% 50% / 60% 60%;
+            position: relative;
+            box-shadow: 0 0 20px rgba(255, 68, 68, 0.6);
+        }
+
+        .lantern-top {
+            width: 40px;
+            height: 30px;
+            background: #ffd700;
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+        }
+
+        .lantern-tassel {
+            width: 4px;
+            height: 40px;
+            background: #ffd700;
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .blessing-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .blessing-title {
+            font-size: 2.2rem;
+            color: #c41e3a;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .blessing-title::before,
+        .blessing-title::after {
+            content: '✨';
+            position: absolute;
+            font-size: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .blessing-title::before {
+            left: -30px;
+        }
+
+        .blessing-title::after {
+            right: -30px;
+        }
+
+        .blessing-text {
+            font-size: 1.3rem;
+            color: #333;
+            line-height: 2;
+            margin-bottom: 20px;
+            padding: 0 20px;
+        }
+
+        .blessing-item {
+            background: linear-gradient(135deg, #fff5f5, #ffe4e1);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blessing-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .blessing-item h3 {
+            color: #c41e3a;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .blessing-item p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .interactive-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: #fff;
+            box-shadow: 0 5px 15px rgba(238, 90, 36, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(238, 90, 36, 0.6);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #c41e3a;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: explode 2s ease-out infinite;
+        }
+
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: #fff;
+            font-size: 1rem;
+            animation: fall linear infinite;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #fff;
+            font-size: 1rem;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-text {
+            margin-bottom: 10px;
+        }
+
+        .signature {
+            font-size: 1.2rem;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes swing {
+            0% {
+                transform: rotate(-5deg);
+            }
+            100% {
+                transform: rotate(5deg);
+            }
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.3rem;
+            }
+
+            .lantern-container {
+                gap: 20px;
+            }
+
+            .lantern {
+                width: 60px;
+                height: 90px;
+            }
+
+            .lantern-body {
+                width: 60px;
+                height: 60px;
+            }
+
+            .interactive-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fireworks" id="fireworks"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🎊 新年快乐 🎊</h1>
+            <p class="subtitle">致最敬爱的老师</p>
+        </div>
+
+        <div class="lantern-container">
+            <div class="lantern">
+                <div class="lantern-top"></div>
+                <div class="lantern-body"></div>
+                <div class="lantern-tassel"></div>
+            </div>
+            <div class="lantern">
+                <div class="lantern-top"></div>
+                <div class="lantern-body"></div>
+                <div class="lantern-tassel"></div>
+            </div>
+            <div class="lantern">
+                <div class="lantern-top"></div>
+                <div class="lantern-body"></div>
+                <div class="lantern-tassel"></div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="blessing-section">
+                <h2 class="blessing-title">新年祝福</h2>
+                
+                <div class="blessing-item" onclick="changeBlessing()">
+                    <h3>🌸 新年新气象</h3>
+                    <p>愿您在新的一年里，身体健康，工作顺利，桃李满天下，春晖遍四方！</p>
+                </div>
+
+                <div class="blessing-item" onclick="changeBlessing()">
+                    <h3>🎆 万事如意</h3>
+                    <p>愿您心想事成，万事如意，每一天都充满阳光和欢笑！</p>
+                </div>
+
+                <div class="blessing-item" onclick="changeBlessing()">
+                    <h3>🌟 财源广进</h3>
+                    <p>愿您财源滚滚，事业蒸蒸日上，生活幸福美满！</p>
+                </div>
+
+                <div class="blessing-item" onclick="changeBlessing()">
+                    <h3>🌺 平安喜乐</h3>
+                    <p>愿您平平安安，喜乐常伴，阖家幸福，万事胜意！</p>
+                </div>
+            </div>
+
+            <div class="interactive-section">
+                <button class="btn btn-primary" onclick="celebrate()">🎆 点击庆祝</button>
+                <button class="btn btn-secondary" onclick="sendWishes()">💌 发送祝福</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p class="footer-text">感谢您小学的辛勤付出和悉心教导</p>
+            <p class="footer-text">祝您新年快乐，身体健康，工作顺利！</p>
+            <p class="signature">— 您的学生敬上</p>
+        </div>
+    </div>
+
+    <script>
+        const blessings = [
+            {
+                title: "🌸 新年新气象",
+                text: "愿您在新的一年里，身体健康，工作顺利，桃李满天下，春晖遍四方！"
+            },
+            {
+                title: "🎆 万事如意",
+                text: "愿您心想事成，万事如意，每一天都充满阳光和欢笑！"
+            },
+            {
+                title: "🌟 财源广进",
+                text: "愿您财源滚滚，事业蒸蒸日上，生活幸福美满！"
+            },
+            {
+                title: "🌺 平安喜乐",
+                text: "愿您平平安安，喜乐常伴，阖家幸福，万事胜意！"
+            },
+            {
+                title: "🎊 吉星高照",
+                text: "愿您吉星高照，福星临门，好运连连，幸福永远！"
+            },
+            {
+                title: "🌈 春风得意",
+                text: "愿您春风得意马蹄疾，一日看尽长安花，前程似锦！"
+            },
+            {
+                title: "🎋 笑口常开",
+                text: "愿您笑口常开，烦恼全消，快乐常伴，幸福永驻！"
+            },
+            {
+                title: "🌺 福气满满",
+                text: "愿您福气满满，喜气洋洋，新年新气象，好运常相伴！"
+            }
+        ];
+
+        let currentBlessingIndex = 0;
+
+        function changeBlessing() {
+            currentBlessingIndex = (currentBlessingIndex + 1) % blessings.length;
+            const blessingItems = document.querySelectorAll('.blessing-item');
+            
+            blessingItems.forEach((item, index) => {
+                const blessing = blessings[(currentBlessingIndex + index) % blessings.length];
+                item.querySelector('h3').textContent = blessing.title;
+                item.querySelector('p').textContent = blessing.text;
+                
+                item.style.animation = 'none';
+                item.offsetHeight;
+                item.style.animation = 'fadeInUp 0.5s ease-out';
+            });
+        }
+
+        function celebrate() {
+            createFireworks();
+            alert('🎉 新年快乐！愿您在新的一年里万事胜意，身体健康，工作顺利！');
+        }
+
+        function sendWishes() {
+            const messages = [
+                "新年快乐！感谢您的教导！",
+                "祝您新年快乐，身体健康！",
+                "新年新气象，万事胜意！",
+                "感谢您小学的辛苦付出！"
+            ];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            alert('💌 ' + randomMessage);
+        }
+
+        function createFireworks() {
+            const fireworksContainer = document.getElementById('fireworks');
+            const colors = ['#ff0000', '#ffd700', '#00ff00', '#00ffff', '#ff00ff', '#ffffff'];
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const firework = document.createElement('div');
+                    firework.className = 'firework';
+                    firework.style.left = Math.random() * 100 + '%';
+                    firework.style.top = Math.random() * 50 + '%';
+                    firework.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    firework.style.animationDelay = Math.random() * 2 + 's';
+                    fireworksContainer.appendChild(firework);
+                    
+                    setTimeout(() => {
+                        firework.remove();
+                    }, 2000);
+                }, i * 200);
+            }
+        }
+
+        function createSnowflakes() {
+            const snowflakes = ['❄', '❅', '❆', '✻', '✼'];
+            
+            for (let i = 0; i < 30; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                snowflake.style.animationDelay = Math.random() * 5 + 's';
+                snowflake.style.fontSize = (Math.random() * 1 + 0.5) + 'rem';
+                document.body.appendChild(snowflake);
+            }
+        }
+
+        window.onload = function() {
+            createSnowflakes();
+            
+            setTimeout(() => {
+                createFireworks();
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
